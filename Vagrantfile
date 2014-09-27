@@ -1,7 +1,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 machines = [
-  { hostname: "mysql", ip: "192.168.33.10", memory: "512", box: "ubuntu/trusty64" }
+  { hostname: "homologacao", ip: "192.168.33.10", memory: "512", box: "ubuntu/trusty64" }
 ]
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -18,7 +18,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
 
       machine_config.vm.provision :puppet do |puppet|
-       #puppet.options        = "--verbose --summarize --debug"
         puppet.manifests_path = "puppet/manifests"
         puppet.module_path    = "puppet/modules"
         puppet.manifest_file  = "#{machine[:hostname]}.pp"

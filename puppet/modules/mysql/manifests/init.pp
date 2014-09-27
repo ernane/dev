@@ -39,7 +39,7 @@ class mysql {
 
   exec { 'grant_root':
     unless => "/usr/bin/mysql -uroot -p${root_password}",
-    command => "/usr/bin/mysql -uroot -e \"grant all on *.* to 'root'@'%' IDENTIFIED BY 'root';\"",
+    command => "/usr/bin/mysql -uroot -e \"grant all on *.* to 'root'@'%' IDENTIFIED BY '${root_password}';\"",
     require => Package["mysql-server"],
   }
 }
