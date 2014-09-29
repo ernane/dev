@@ -8,4 +8,5 @@ ohmyzsh::install { 'vagrant': }->
 ohmyzsh::upgrade { 'vagrant': }->
 
 # senha padrao do banco 'sefa123' usuario 'root'
-class { 'mysql': }
+class { 'mysql': }->
+class { 'nginx': }
