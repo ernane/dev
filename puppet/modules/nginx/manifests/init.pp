@@ -4,11 +4,9 @@
 class nginx {
   # resources
 
-  $bin = '/usr/bin:/usr/sbin'
-
-  exec { "update-inicial":
-    command => "apt-get update"
-  }
+   Exec {
+      path => ["/usr/bin", "/bin", "/usr/sbin", "/sbin", "/usr/local/bin", "/usr/local/sbin"]
+   }
 
   exec { "apt-key":
     command => "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62",
@@ -39,4 +37,30 @@ class nginx {
     ensure => 'running',
    require => Package['nginx'],
   }
+
+  file { "/etc/nginx/nginx.conf":
+    ensure  => file,
+    owner   => "root",
+    group   => "root",
+    mode    => 0644,
+    source  => "puppet:///modules/nginx/nginx.conf",
+    require => Package["nginx"],
+    notify  => Service["nginx"]
+  }
+
+  file { "/etc/nginx/conf.d/homologacao.conf":
+    ensure  => file,
+    owner   => "root",
+    group   => "root",
+    mode    => 0644,
+    source  => "puppet:///modules/nginx/homologacao.conf",
+    require => Package["nginx"],
+    notify  => Service["nginx"]
+  }
+
+  file { "/etc/nginx/conf.d/default.conf":
+    ensure => absent,
+    notify => Service["nginx"]
+  }
+
 }
