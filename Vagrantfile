@@ -20,7 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       machine_config.vm.provision :puppet do |puppet|
         puppet.manifests_path = "puppet/manifests"
         puppet.module_path    = "puppet/modules"
-        puppet.manifest_file  = "#{machine[:hostname]}.pp"
       end
 
     end
