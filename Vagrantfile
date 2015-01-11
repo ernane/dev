@@ -1,7 +1,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 machines = [
-  { hostname: "homologacao", ip: "192.168.33.10", memory: "512", box: "ubuntu/trusty64" }
+  { hostname: "mysql",  ip: "192.168.33.10", memory: "512",  box: "ubuntu/trusty64"     },
+  { hostname: "oracle", ip: "192.168.33.11", memory: "2048", box: "hashicorp/precise64" }
 ]
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|

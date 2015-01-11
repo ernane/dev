@@ -10,7 +10,7 @@ class mysql {
   if ! defined(Package['mysql-server']) {
     package { ['mysql-server']:
     ensure => latest,
-    require => Exec["apt-update"],
+    require => Exec["update"],
     }
   }
 
